@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import './App.css'
-import Login from './components/Login'
-import { AuthProvider } from './use-auth-client'
-import { BrowserRouter } from 'react-router-dom'
 
+import { AuthProvider, useAuth } from './use-auth-client'
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
+import Dashboard from './components/ICRC/dashboard'
+import Login from './components/Login'
 function App() {
-  return <Login />
+  const { isAuthenticated } = useAuth()
+
+  return <>{isAuthenticated ? <Dashboard /> : <Login />}</>
 }
 
 export default () => (
